@@ -13,6 +13,7 @@ import org.opencv.objdetect.QRCodeDetector;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,10 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         // Load the OpenCV library
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        URL location = Main.class.getProtectionDomain().getCodeSource().getLocation();
+        String path = (location.getPath().substring(0,location.getPath().lastIndexOf("/")));
+        System.load(path+"/opencv_java452.dll");
+        System.load(path+"/opencv_videoio_ffmpeg452_64.dll");
 
         // Create a VideoCapture object to access the camera (use 0 for the default camera)
         VideoCapture camera = new VideoCapture(0);
